@@ -1,4 +1,0 @@
-geometry_msgs/Pose A
-geometry_msgs/Pose B
----
-bool status
