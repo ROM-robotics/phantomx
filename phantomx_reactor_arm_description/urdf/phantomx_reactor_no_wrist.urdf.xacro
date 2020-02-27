@@ -6,10 +6,10 @@
 	<xacro:property name="joint_1_lower_limit" value="-${PI}"/>
 	<xacro:property name="joint_2_upper_limit" value="${PI/2}"/>
 	<xacro:property name="joint_2_lower_limit" value="-${PI/2}"/>
-	<xacro:property name="joint_3_upper_limit" value="1.8"/>
-	<xacro:property name="joint_3_lower_limit" value="-1.0"/>
-	<xacro:property name="joint_4_upper_limit" value="${PI/2}"/>
-	<xacro:property name="joint_4_lower_limit" value="-${PI/2}"/>
+	<xacro:property name="joint_3_upper_limit" value="${PI/2}"/>
+	<xacro:property name="joint_3_lower_limit" value="-${PI/2}"/>
+	<xacro:property name="joint_4_upper_limit" value="1.9"/>
+	<xacro:property name="joint_4_lower_limit" value="-1.7"/>
 	<xacro:property name="gripper_joint_upper_limit" value="0.0"/>
 	<xacro:property name="gripper_joint_lower_limit" value="0.03"/>
 	

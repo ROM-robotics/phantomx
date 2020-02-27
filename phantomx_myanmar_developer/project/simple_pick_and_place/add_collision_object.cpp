@@ -37,15 +37,15 @@ int main(int argc, char** argv)
   geometry_msgs::Pose pose; 
   pose.position.x = 0.31;
   pose.position.y = 0.01;
-  pose.position.z = -0.01;
+  pose.position.z = 0.25;
   pose.orientation.w = 1.0;
 
   shape_msgs::SolidPrimitive primitive;
   primitive.type = primitive.BOX;
   primitive.dimensions.resize(3);
-  primitive.dimensions[0] = 0.4; //x
-  primitive.dimensions[1] = 0.8; //y
-  primitive.dimensions[2] = 0.0001;  //z
+  primitive.dimensions[0] = 0.1; //x
+  primitive.dimensions[1] = 0.1; //y
+  primitive.dimensions[2] = 0.5;  //z
 
   co.primitives.push_back(primitive);
   co.primitive_poses.push_back(pose);

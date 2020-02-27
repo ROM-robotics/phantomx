@@ -1,0 +1,17 @@
+jog_joint_node:
+  # Specify the list of joint to jog here. You can see the joint names
+  # in tra1_moveit_config/config/tra1_controllers.yaml
+  joint_names:
+    - shoulder_yaw_joint
+    - shoulder_pitch_joint
+    - elbow_pitch_joint
+    - wrist_pitch_joint
+
+jog_frame_node:
+  # Specify the list of group name of moveit to jog. You can see the
+  # names in tra1_moveit_config/config/tra1.srdf
+  group_names:
+    - arm
+  link_names:
+    - gripper_guide_link
+  
