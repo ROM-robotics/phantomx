@@ -1,0 +1,11 @@
+<launch>
+  
+
+  
+
+  <rosparam command="load" file="$(find phantomx_myanmar_developer)/config/phantomx_tar_jog.yaml"/>
+  <node name="jog_joint_node" pkg="jog_controller" type="jog_joint_node"/>
+  <node name="jog_frame_node" pkg="jog_controller" type="jog_frame_node"/>
+
+ 
+</launch>

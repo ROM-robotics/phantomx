@@ -6,12 +6,11 @@
 	<xacro:property name="joint_1_lower_limit" value="-${PI}"/>
 	<xacro:property name="joint_2_upper_limit" value="${PI/2}"/>
 	<xacro:property name="joint_2_lower_limit" value="-${PI/2}"/>
-	<xacro:property name="joint_3_upper_limit" value="${PI/2}"/>
-	<xacro:property name="joint_3_lower_limit" value="-${PI/2}"/>
-	<xacro:property name="joint_4_upper_limit" value="1.9"/>
-	<xacro:property name="joint_4_lower_limit" value="-1.7"/>
-	<xacro:property name="gripper_joint_upper_limit" value="0.0"/>
-	<xacro:property name="gripper_joint_lower_limit" value="0.03"/>
+	<xacro:property name="joint_3_upper_limit" value="1.8"/>
+	<xacro:property name="joint_3_lower_limit" value="-1.0"/>
+	<xacro:property name="joint_4_upper_limit" value="${PI/2}"/>
+	<xacro:property name="joint_4_lower_limit" value="-${PI/2}"/>
+	
 	
 	<xacro:macro name="phantomx_reactor_no_wrist" params="parent prefix *origin">
 		
@@ -184,99 +183,154 @@
 	  </link>
 	  
 	  <!-- GRIPPER -->
-		<joint name="${prefix}gripper_guide_joint" type="fixed"> 
-			<origin xyz="0.07289 0.00175 0" rpy="${PI/2} 0 0" />
-			<parent link="${prefix}wrist_1_link" /> 
-			<child link="${prefix}gripper_guide_link" /> 
-			<axis xyz="0 0 1" /> 
-			<limit effort="1.5" velocity="6.178465545" lower="0" upper="1.57"/> 
-		</joint> 
-
-		<link name="${prefix}gripper_guide_link"> 
-			<inertial>
-				<origin xyz="0.0091884 -7.3309E-13 -3.4513E-05" rpy="0 0 0" />
-				<mass value="0.02487" />
-				<inertia ixx="1.5997E-05" ixy="1.6551E-16" ixz="8.3911E-09" iyy="7.3918E-06" iyz="-2.7145E-16" izz="1.5931E-05" /> 
-			</inertial> 
-			<visual>   
-				<origin xyz="0 0 0" rpy="1.57 3.14 1.57" />   
-				<geometry> 
-					<mesh filename="package://phantomx_reactor_arm_description/meshes/Guide_Rail_Fixed_Centered.stl" scale="0.01 0.01 0.01" />
-				</geometry>
-				<material name=""> 
-					<color rgba="0.25098 0.25098 0.25098 1" />
-				</material> 
-			</visual>
-			<collision>
-				<origin xyz="0 0 0" rpy="1.57 3.14 1.57" />
-				<geometry> 
-					<mesh filename="package://phantomx_reactor_arm_description/meshes/Guide_Rail_Fixed_Centered.stl" scale="0.01 0.01 0.01" /> 
-				</geometry>
-			</collision> 
-		</link> 
-		<joint name="${prefix}gripper_revolute_joint" type="revolute">
-			 <origin xyz = "0 0 0" rpy="0 ${PI/2} 0" />
-			 <parent link="${prefix}gripper_guide_link" />
-			 <child link="${prefix}gripper_aux_link" />
-			 <axis xyz="0 0 1" />
-			 <limit lower="-${PI}" upper="${PI}" effort="0" velocity="0.5" />
-        </joint>
-        <link name="${prefix}gripper_aux_link"> 
-		</link>
-      
-		<joint name="${prefix}gripper_right_joint" type="prismatic"> 
-			<origin xyz="0.0202 0 0"   rpy="0 0 0" /> 
-			<parent link="${prefix}gripper_guide_link" /> 
-			<child link="${prefix}gripper_right_link" /> 
-			<axis xyz="0 1 0" /> 
-			<limit effort="1.5" velocity="6.178465545" lower="${gripper_joint_lower_limit}" upper="${gripper_joint_upper_limit}" /> 
-		</joint> 
-
-		<link name="${prefix}gripper_right_link"> 
-			<visual>  
-				<origin xyz="0 0.010 0" rpy="-1.57 -1.57 0" />   
-				<geometry> 
-					<mesh filename="package://phantomx_reactor_arm_description/meshes/Gripper_Hand_Fixed_Centered.stl" scale="0.01 0.01 0.01" />   
-				</geometry>  
-				<material name=""> 
-					<color rgba="0.25098 0.25098 0.25098 1" />   
-				</material> 
-			</visual> 
-			<collision>   
-				<origin xyz="0 0.010 0" rpy="-1.57 -1.57 0" />   
-				<geometry> 
-					<mesh filename="package://phantomx_reactor_arm_description/meshes/Gripper_Hand_Fixed_Centered.stl" scale="0.01 0.01 0.01" />   
-				</geometry> 
-			</collision> 
-		</link>
-
-		<joint name="${prefix}gripper_left_joint" type="prismatic"> 
-			<origin xyz="0.0202 0 0" rpy="0 0 0" /> 
-			<parent link="${prefix}gripper_guide_link" /> 
-			<child link="${prefix}gripper_left_link" /> 
-			<axis xyz="0 1 0" /> 
-			<limit effort="1.5" velocity="6.178465545"  lower="-1.9" upper="0" /> 
-			<mimic joint="${prefix}gripper_right_joint" multiplier="-1.0"/> 
-		</joint> 
-		<link name="${prefix}gripper_left_link"> 
-			<visual>   
-				<origin xyz="0 -0.010 0" rpy="1.57 1.57 0" />   
-				<geometry> 
-					<mesh filename="package://phantomx_reactor_arm_description/meshes/Gripper_Hand_Fixed_Centered.stl" scale="0.01 0.01 0.01" />   
-				</geometry>  
-				<material name=""> 
-					<color rgba="0.25098 0.25098 0.25098 1" />   
-				</material> 
-			</visual> 
-			<collision>   
-				<origin xyz="0 -0.010 0" rpy="1.57 1.57 0" />   
-				<geometry> 
-					<mesh filename="package://phantomx_reactor_arm_description/meshes/Gripper_Hand_Fixed_Centered.stl" scale="0.01 0.01 0.01" />   
-				</geometry> 
-			</collision> 
-		</link> 
+	   <joint name="${prefix}gripper_joint" type="fixed">
+		<origin xyz="0.07289 0.00175 0" rpy="${PI/2} 0 0" />
+		<parent link="${prefix}wrist_1_link" />
+		<child link="${prefix}gripper_link" />
+		<axis xyz="0 0 0" />
+	  </joint>
 	  
-		  
+	  <link name="${prefix}gripper_link">
+		<inertial>
+		  <origin xyz="0.0091884 -7.3309E-13 -3.4513E-05" rpy="0 0 0" />
+		  <mass value="0.02487" />
+		  <inertia  ixx="1.5997E-05" ixy="1.6551E-16" ixz="8.3911E-09"
+					iyy="7.3918E-06" iyz="-2.7145E-16"
+					izz="1.5931E-05" />
+		</inertial>
+		<visual>
+		  <origin xyz="0 0 0" rpy="0 0 0" />
+		  <geometry>
+			<mesh filename="package://phantomx_reactor_arm_description/meshes/gripper_link.STL" />
+		  </geometry>
+		  <material name="">
+			<color rgba="0.25098 0.25098 0.25098 1" />
+		  </material>
+		</visual>
+		<collision>
+		  <origin xyz="0 0 0" rpy="0 0 0" />
+		  <geometry>
+			<mesh filename="package://phantomx_reactor_arm_description/meshes/gripper_link_hull.STL" />
+		  </geometry>
+		</collision>
+	  </link>
+	  
+	 
+	  <!--
+	  
+	  
+	  
+	   
+	  <link	name="wrist_2">
+		<inertial>
+		  <origin
+			xyz="0.022349 -5.4754E-07 0.0089164"
+			rpy="0 0 0" />
+		  <mass
+			value="0.055706" />
+		  <inertia
+			ixx="1.5957E-05"
+			ixy="2.0952E-10"
+			ixz="3.3629E-06"
+			iyy="2.1196E-05"
+			iyz="-2.4643E-10"
+			izz="1.4482E-05" />
+		</inertial>
+		<visual>
+		  <origin
+			xyz="0 0 0"
+			rpy="0 0 0" />
+		  <geometry>
+			<mesh
+			  filename="package://phantomx_reactor_arm_description/meshes/wrist_2.STL" />
+		  </geometry>
+		  <material
+			name="">
+			<color
+			  rgba="0.25098 0.25098 0.25098 1" />
+		  </material>
+		</visual>
+		<collision>
+		  <origin
+			xyz="0 0 0"
+			rpy="0 0 0" />
+		  <geometry>
+			<mesh
+			  filename="package://phantomx_reactor_arm_description/meshes/wrist_2_hull.STL" />
+		  </geometry>
+		</collision>
+	  </link>
+	  
+	  <joint name="wrist_roll"type="revolute">
+		<origin
+		  xyz="0.071 0.00175 0"
+		  rpy="0 0 0" />
+		<parent
+		  link="wrist_1" />
+		<child
+		  link="wrist_2" />
+		<axis
+		  xyz="1 0 0" />
+		<limit
+		  effort="1.5"
+		  velocity="6.178465545" 
+		  lower="-3.141593"
+		  upper="3.141593" />
+	  </joint>
+	  
+	  <link name="gripper_link">
+		<inertial>
+		  <origin
+			xyz="0.0091884 -7.3309E-13 -3.4513E-05"
+			rpy="0 0 0" />
+		  <mass
+			value="0.02487" />
+		  <inertia
+			ixx="1.5997E-05"
+			ixy="1.6551E-16"
+			ixz="8.3911E-09"
+			iyy="7.3918E-06"
+			iyz="-2.7145E-16"
+			izz="1.5931E-05" />
+		</inertial>
+		<visual>
+		  <origin
+			xyz="0 0 0"
+			rpy="0 0 0" />
+		  <geometry>
+			<mesh
+			  filename="package://phantomx_reactor_arm_description/meshes/gripper_link.STL" />
+		  </geometry>
+		  <material
+			name="">
+			<color
+			  rgba="0.25098 0.25098 0.25098 1" />
+		  </material>
+		</visual>
+		<collision>
+		  <origin
+			xyz="0 0 0"
+			rpy="0 0 0" />
+		  <geometry>
+			<mesh
+			  filename="package://phantomx_reactor_arm_description/meshes/gripper_link_hull.STL" />
+		  </geometry>
+		</collision>
+	  </link>
+	  
+	  <joint name="gripper_joint" type="fixed">
+		<origin
+		  xyz="0.04789 0 0"
+		  rpy="0 0 0" />
+		<parent
+		  link="wrist_2" />
+		<child
+		  link="gripper_link" />
+		<axis
+		  xyz="0 0 0" />
+	  </joint>
+	  -->
+	  
 	</xacro:macro>
 
 </robot>
