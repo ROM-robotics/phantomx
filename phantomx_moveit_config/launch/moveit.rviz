@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /MotionPlanning1
         - /MotionPlanning1/Planning Request1
+        - /MotionPlanning1/Planned Path1
       Splitter Ratio: 0.742560029
     Tree Height: 405
   - Class: rviz/Help
@@ -139,15 +140,15 @@ Visualization Manager:
       Planning Request:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 1
-        Goal State Color: 250; 128; 0
+        Goal State Color: 0; 255; 127
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
         Planning Group: arm
         Query Goal State: true
-        Query Start State: false
+        Query Start State: true
         Show Workspace: false
         Start State Alpha: 1
-        Start State Color: 0; 255; 0
+        Start State Color: 255; 63; 46
       Planning Scene Topic: move_group/monitored_planning_scene
       Robot Description: robot_description
       Scene Geometry:
@@ -235,7 +236,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.03175771
+      Distance: 1.10636342
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
@@ -250,10 +251,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.319797158
+      Pitch: 0.734797597
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 5.47494888
+      Yaw: 0.956758499
     Saved: ~
 Window Geometry:
   Displays:
