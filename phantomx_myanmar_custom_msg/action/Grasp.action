@@ -1,9 +1,0 @@
-#goal
-geometry_msgs/Pose Pick
-geometry_msgs/Pose Place
----
-#result
-int32 ok
----
-#feedback
-int32 current
